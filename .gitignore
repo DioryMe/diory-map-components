@@ -1,0 +1,14 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+# IntelliJ project files
+.idea
+*.iml
+
+# Node_modules
+node_modules
+
+# Logs
+*.log
+
+# Example
+bundle.js
