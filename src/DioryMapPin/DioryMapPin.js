@@ -14,22 +14,24 @@ const DioryMapPin = ({ state = {}, children, styles = {}, ...diory }) => (
 const getStyles = ({ hover }, styles) => !hover ?
   ({
     ...styles,
-    diory: defaultStyles.circleDiory,
+    diory: {
+      ...styles.diory,
+      ...defaultStyles.circleDiory
+    },
     text: {
-      ...styles.text,
-      ...defaultStyles.text,
-      ...defaultStyles.circleText
+      fontSize: 0,
+      transition: 'all 0.5s'
     }
   }) :
   ({
     ...styles,
     diory: {
-      ...defaultStyles.rectangleDiory,
-      ...styles.diory
+      ...styles.diory,
+      ...defaultStyles.rectangleDiory
     },
     text: {
-      ...styles.text,
-      ...defaultStyles.text
+      transition: 'all 0.5s',
+      ...styles.text
     }
   })
 
@@ -73,12 +75,6 @@ const defaultStyles = {
     height: '100px',
     borderRadius: 0,
     overflow: 'hidden',
-    transition: 'all 0.5s'
-  },
-  circleText: {
-    fontSize: '4px'
-  },
-  text: {
     transition: 'all 0.5s'
   }
 }
