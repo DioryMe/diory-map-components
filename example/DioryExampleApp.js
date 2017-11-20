@@ -19,7 +19,7 @@ class DioryExampleApp extends Component {
   render() {
     const { room: { diorys = {}, tools = {} }, hoveredKey, focus } = this.state
 
-    const mapProps = mergeData(tools.googleMapTool, focus)
+    const mapProps = focus ? mergeData(tools.googleMapTool, focus) : tools.googleMapTool
     const mapActions = {
       onDioryClick: this.setFocus,
       onMapClick: this.resetFocus,
