@@ -1,12 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import GoogleMap from 'google-map-react'
-import { DioryMapPin } from '../DioryMapPin'
+import { DioryMapPin } from '../.'
 import { enhanceWithDioryMapWrapper } from './enhanceWithDioryMapWrapper'
-
-const defaultStyles = {
-  diory: { position: 'fixed', height: '100%', width: '100%' }
-}
 
 const DioryGoogleMap = ({
   data: {
@@ -14,12 +10,13 @@ const DioryGoogleMap = ({
     geo: { latitude, longitude, zoom }
   },
   styles = {},
-  diorys = {},
+  diorys,
   actions: {
     onDioryClick,
     onDioryHoverBegin,
     onDioryHoverEnd,
-    onMapClick
+    onMapClick,
+    onChange
   },
   children
 }) => (!apiKey ? null :
@@ -28,22 +25,39 @@ const DioryGoogleMap = ({
       bootstrapURLKeys={{ key: apiKey }}
       center={{ lat: latitude, lng: longitude }}
       zoom={ zoom }
-      onClick={ onMapClick }
+      onClick={ getCoordinates(onMapClick) }
       onChildClick={ getKeyAndDiory(onDioryClick) }
       onChildMouseEnter={ getKeyAndDiory(onDioryHoverBegin) }
       onChildMouseLeave={ getKeyAndDiory(onDioryHoverEnd) }
+      onChange={ getZoom(onChange) }
     >
-      { getDiorys(children, diorys).map(enhanceWithDioryMapWrapper) }
+      {
+        children ?
+        toArray(children).map(enhanceWithDioryMapWrapper) :
+        createMapPins(diorys).map(enhanceWithDioryMapWrapper)
+      }
     </GoogleMap>
   </div>
 )
 
+const getCoordinates = action => ({ lng: longitude, lat: latitude }) => {
+  action && action({ diory: { data: { geo: { longitude, latitude } } } })
+}
+const getZoom = action => ({ zoom }) => {
+  action && action({ diory: { data: { geo: { zoom } } } })
+}
 const getKeyAndDiory = action => (index, { Diory: { key, props: { actions, state, ...diory } } }) => {
   action && action({ key, diory })
 }
 
-const getDiorys = (childrenDiorys, propDiorys) => childrenDiorys ||
-  Object.entries(propDiorys).map(([key, diory]) => <DioryMapPin key={ key } { ...diory } />)
+const toArray = prop => Array.isArray(prop) ? prop : [prop]
+
+const createMapPins = (diorys = {}) => Object.entries(diorys).map(([key, diory]) => <DioryMapPin key={ key } { ...diory } />)
+
+
+const defaultStyles = {
+  diory: { position: 'fixed', height: '100%', width: '100%' }
+}
 
 DioryGoogleMap.defaultProps = {
   data: {

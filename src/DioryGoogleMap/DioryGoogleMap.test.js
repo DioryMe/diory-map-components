@@ -40,7 +40,7 @@ describe('<DioryGoogleMap/>', () => {
         expect(getComponent().prop('zoom')).toEqual(zoom)
       })
 
-      describe('GoogleMap actions', () => {
+      describe('map actions', () => {
         let component
         let actions
         beforeEach(() => {
@@ -49,7 +49,7 @@ describe('<DioryGoogleMap/>', () => {
             .find('GoogleMap')
         })
 
-        describe('when a map diory is clicked', () => {
+        describe('when diory is clicked', () => {
           const diory = { some: 'diory' }
           const key = 'some-key'
           beforeEach(() => {
@@ -58,8 +58,38 @@ describe('<DioryGoogleMap/>', () => {
             component.prop('onChildClick')(1, { Diory: { key, props: diory } })
           })
 
-          it('calls onDioryClick action', () => {
+          it('calls onDioryClick action with key and diory', () => {
             expect(actions.onDioryClick).toBeCalledWith({ key, diory })
+          })
+        })
+
+        describe('when map is clicked', () => {
+          const diory = { some: 'diory' }
+          const key = 'some-key'
+          beforeEach(() => {
+            actions.onMapClick = jest.fn()
+            component = getComponent()
+            component.prop('onClick')({ lng: 'some-lng', lat: 'some-lat' })
+          })
+
+          it('calls onChange action with diory data geo longitude and latitude', () => {
+            expect(actions.onMapClick).toBeCalledWith({
+              diory: { data: { geo: { longitude: 'some-lng', latitude: 'some-lat' }}}
+            })
+          })
+        })
+
+        describe('when map is changed due to resize or zoom', () => {
+          const diory = { some: 'diory' }
+          const key = 'some-key'
+          beforeEach(() => {
+            actions.onChange = jest.fn()
+            component = getComponent()
+            component.prop('onChange')({ zoom: 'some-zoom' })
+          })
+
+          it('calls onChange action with diory data geo zoom', () => {
+            expect(actions.onChange).toBeCalledWith({ diory: { data: { geo: { zoom: 'some-zoom' }}} })
           })
         })
       })
