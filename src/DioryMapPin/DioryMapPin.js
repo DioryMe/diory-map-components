@@ -1,44 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import deepmerge from 'deepmerge'
 import { Diory } from 'diory-react-components'
 
-const DioryMapPin = ({ state = {}, children, styles = {}, ...diory }) => (
-  <div style={ state.hover ? defaultStyles.top : {} }>
+const DioryMapPin = ({ state = {}, children, ...diory }) => (
+  <div style={ state.hover ? defaultStyles.setOnTop : {} }>
     <div style={ defaultStyles.pin } />
-    <div style={ defaultStyles.dioryContainer }>
-      { children || <Diory { ...diory } styles={ getStyles(state, styles) } /> }
+    <div style={ defaultStyles.container }>
+      <div style={ state.hover ? defaultStyles.rectangle : defaultStyles.circle }>
+        { children || <Diory { ...deepmerge({ styles: { diory: defaultStyles.diory } }, diory )} /> }
+      </div>
     </div>
   </div>
 )
 
-const getStyles = ({ hover }, styles) => !hover ?
-  ({
-    ...styles,
-    diory: {
-      ...styles.diory,
-      ...defaultStyles.circleDiory
-    },
-    text: {
-      fontSize: 0,
-      transition: 'all 0.5s'
-    }
-  }) :
-  ({
-    ...styles,
-    diory: {
-      ...styles.diory,
-      ...defaultStyles.rectangleDiory
-    },
-    text: {
-      transition: 'all 0.5s',
-      ...styles.text
-    }
-  })
-
 const defaultStyles = {
-  top: {
+  setOnTop: {
     position: 'relative',
-    zIndex: 10
+    zIndex: 10000
   },
   pin: {
     display: 'inline-block',
@@ -53,7 +32,7 @@ const defaultStyles = {
     transformOrigin: '0 0',
     boxShadow: '-1px 1px 2px rgba(0,0,0,.2)'
   },
-  dioryContainer: {
+  container: {
     display: 'inline-block',
     position: 'absolute',
     zIndex: 1,
@@ -63,19 +42,29 @@ const defaultStyles = {
     transform: 'translateX(-50%)',
     transition: 'all 0.5s'
   },
-  circleDiory: {
-    width: '26px',
-    height: '26px',
+  circle: {
+    position: 'relative',
+    width: '100px',
+    height: '100px',
+    transform: 'scale(0.25)',
+    transformOrigin: 'bottom',
     borderRadius: '50%',
     overflow: 'hidden',
     transition: 'all 0.5s'
   },
-  rectangleDiory: {
+  rectangle: {
+    position: 'relative',
     width: '200px',
     height: '100px',
+    transform: 'scale(1)',
+    transformOrigin: 'bottom',
     borderRadius: 0,
     overflow: 'hidden',
     transition: 'all 0.5s'
+  },
+  diory: {
+    height: '100%',
+    width: '100%'
   }
 }
 
