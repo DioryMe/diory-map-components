@@ -1,54 +1,105 @@
 import React, { Component } from 'react'
-import { DioryGoogleMap, DioryMapPin } from '../lib'
-import room from './room.js'
+import DioryGoogleMapExample from './DioryGoogleMapExample'
+import DioryMapPickerExample from './DioryMapPickerExample'
+import Diory from 'diory-react-components'
 
 class DioryExampleApp extends Component {
   constructor() {
     super();
     this.state = {
-      room: {},
-      hoveredKey: '',
-      focus: undefined,
+      example: 'diory-map-components',
+      pickedDiory: {}
     }
-  }
-
-  componentWillMount() {
-    this.setState(() => ({ room }));
   }
 
   render() {
-    const { room: { diorys = {}, tools = {} }, hoveredKey, focus } = this.state
+    const { example, pickedDiory } = this.state
 
-    const mapProps = focus ? mergeData(tools.googleMapTool, focus) : tools.googleMapTool
-    const mapActions = {
-      onDioryClick: this.setFocus,
-      onMapClick: this.resetFocus,
-      onDioryHoverBegin: this.setHover,
-      onDioryHoverEnd: this.resetHover,
-    }
-    const mapDiorys = focus ? getFocusDiorys(focus) : diorys
     return (
-      <DioryGoogleMap { ...mapProps } actions={ mapActions }>
-        { Object.entries(mapDiorys).map(([key, diory]) =>
-          <DioryMapPin
-            { ...diory }
-            key={ key }
-            state={{ hover: key === hoveredKey}}
+      <div>
+        { example !== 'diory-map-components' &&
+          <Diory
+            text="< Back"
+            styles={{
+              diory: {
+                backgroundColor: 'green',
+                cursor: 'pointer',
+                borderBottom: '2px solid white',
+                width: '100px',
+                float: 'left',
+                zIndex: '1'
+              },
+              text: {
+                fontWeight: 'bold',
+                fontFamily: 'arial',
+                color: 'white'
+              }
+            }}
+            onClick={() => this.setState(() => ({ example: 'diory-map-components' }))}
           />
-        )}
-      </DioryGoogleMap>
+        }
+        <Diory
+          text={ example + ' example' }
+          styles={{
+            diory: {
+              backgroundColor: 'green',
+              borderBottom: '2px solid white'
+            },
+            text: {
+              fontWeight: 'bold',
+              fontFamily: 'arial',
+              color: 'white'
+            }
+          }}
+        />
+        {
+          example === 'diory-map-components' && <div>
+            <Diory
+              text="DioryGoogleMapExample"
+              styles={{
+                diory: {
+                  backgroundColor: 'grey',
+                  cursor: 'pointer',
+                  borderBottom: '2px solid white'
+                },
+                text: {
+                  fontFamily: 'arial',
+                  color: 'white'
+                }
+              }}
+              onClick={() => this.setState(() => ({ example: 'DioryGoogleMapExample' }))}
+            />
+            <Diory
+              text="DioryMapPickerExample"
+              styles={{
+                diory: {
+                  backgroundColor: 'grey',
+                  cursor: 'pointer',
+                  borderBottom: '2px solid white'
+                },
+                text: {
+                  fontFamily: 'arial',
+                  color: 'white'
+                }
+              }}
+              onClick={() => this.setState(() => ({ example: 'DioryMapPickerExample' }))}
+            />
+            <Diory { ...pickedDiory } />
+          </div>
+        }
+        { example === 'DioryGoogleMapExample' &&
+          <DioryGoogleMapExample/>
+        }
+        { example === 'DioryMapPickerExample' &&
+          <DioryMapPickerExample
+            diory={ pickedDiory }
+            onClick={({ diory }) => this.setState(() => ({ pickedDiory: diory, example: 'diory-map-components' }))}
+          />
+        }
+      </div>
     )
   }
-
-  setHover = ({ key: keyValue }) => this.setState(() => ({ hoverKey: keyValue }))
-  resetHover = () => this.setState(() => ({ hoverKey: '' }))
-  setFocus = ({ diory }) => this.setState(() => ({ focus: diory }))
-  resetFocus = () => this.setState(() => ({ focus: undefined }))
 }
-
-const mergeData = (diory1 = {}, diory2 = {}) => ({ ...diory1, data: { ...diory1.data, ...diory2.data } })
-
-const getFocusDiorys = focus => focus.diorys || ({ 0: focus })
 
 export default DioryExampleApp
 
