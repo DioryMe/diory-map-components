@@ -16,3 +16,6 @@ lib
 
 # Example
 bundle.js
+
+# Tests
+tests
