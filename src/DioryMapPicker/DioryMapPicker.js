@@ -4,14 +4,14 @@ import deepmerge from 'deepmerge'
 import { DioryGoogleMap, DioryMapPin } from '../.'
 
 class DioryMapPicker extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       geo: getGeoObject(props)
     }
   }
 
-  render() {
+  render () {
     const { geo } = this.state
     const { ...diory } = this.props
 
@@ -37,7 +37,7 @@ class DioryMapPicker extends Component {
   setZoomAndCallOnChange = ({ diory: { data: { geo: { zoom } } } }) => this.setGeoAndCallOnChange({ zoom })
   setGeoAndCallOnChange = geo => {
     this.setState(setGeo(geo))
-    this.props.onChange({ diory: { data: { geo: deepmerge(this.state.geo, geo) }}})
+    this.props.onChange({ diory: { data: { geo: deepmerge(this.state.geo, geo) } } })
   }
 }
 
@@ -58,7 +58,7 @@ const pinDiory = {
       fontWeight: 'bold',
       textAlign: 'center',
       transform: 'translateY(-50%)',
-      top: '50%',
+      top: '50%'
     }
   },
   state: { hover: false }
@@ -66,7 +66,7 @@ const pinDiory = {
 
 DioryMapPicker.defaultProps = {
   onClick: () => {},
-  onChange: () => {},
+  onChange: () => {}
 }
 
 DioryMapPicker.propTypes = {

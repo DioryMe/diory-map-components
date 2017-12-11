@@ -21,20 +21,20 @@ describe('<DioryMapWrapper/>', () => {
   it('sets $hover to hover state', () => {
     props.$hover = true
     expect(getComponent().props().state).toEqual({ hover: true })
-  });
+  })
 
   describe('given diory has state prop', () => {
     beforeEach(() => {
       props.Diory = <MockDioryComponent state={{ hover: 'some-diory-state' }} />
-    });
+    })
 
     it('sets diory hover state', () => {
       expect(getComponent().props().state).toEqual({ hover: 'some-diory-state' })
-    });
+    })
 
     it('does not set $hover to diory hover state', () => {
       props.$hover = true
       expect(getComponent().props().state).not.toEqual({ hover: true })
-    });
-  });
+    })
+  })
 })

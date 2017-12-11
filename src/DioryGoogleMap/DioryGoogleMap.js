@@ -54,7 +54,6 @@ const toArray = prop => Array.isArray(prop) ? prop : [prop]
 
 const createMapPins = (diorys = {}) => Object.entries(diorys).map(([key, diory]) => <DioryMapPin key={ key } { ...diory } />)
 
-
 const defaultStyles = {
   diory: { position: 'fixed', height: '100%', width: '100%' }
 }

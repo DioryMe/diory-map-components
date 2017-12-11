@@ -64,8 +64,6 @@ describe('<DioryGoogleMap/>', () => {
         })
 
         describe('when map is clicked', () => {
-          const diory = { some: 'diory' }
-          const key = 'some-key'
           beforeEach(() => {
             actions.onMapClick = jest.fn()
             component = getComponent()
@@ -74,14 +72,12 @@ describe('<DioryGoogleMap/>', () => {
 
           it('calls onChange action with diory data geo longitude and latitude', () => {
             expect(actions.onMapClick).toBeCalledWith({
-              diory: { data: { geo: { longitude: 'some-lng', latitude: 'some-lat' }}}
+              diory: { data: { geo: { longitude: 'some-lng', latitude: 'some-lat' } } }
             })
           })
         })
 
         describe('when map is changed due to resize or zoom', () => {
-          const diory = { some: 'diory' }
-          const key = 'some-key'
           beforeEach(() => {
             actions.onChange = jest.fn()
             component = getComponent()
@@ -89,7 +85,7 @@ describe('<DioryGoogleMap/>', () => {
           })
 
           it('calls onChange action with diory data geo zoom', () => {
-            expect(actions.onChange).toBeCalledWith({ diory: { data: { geo: { zoom: 'some-zoom' }}} })
+            expect(actions.onChange).toBeCalledWith({ diory: { data: { geo: { zoom: 'some-zoom' } } } })
           })
         })
       })
