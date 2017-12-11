@@ -3,25 +3,26 @@
   "version": "0.1.2",
   "main": "lib/index.js",
   "scripts": {
+    "clean": "rm -rf node_modules",
+    "link": "npm link diory-map-components",
     "build": "babel src --out-dir lib --ignore test.js",
     "build:watch": "babel src -w -d lib --ignore test.js",
-    "link": "npm link diory-react-components",
     "lint": "eslint src --fix",
     "lint:watch": "esw -w src/**",
     "test": "jest --env=jsdom --coverage",
-    "test:watch": "jest --env=jsdom --watch --coverage",
-    "example": "npm run lint && npm run build && browserify -t [ babelify ] example/app.js -o example/bundle.js",
-    "clean": "rm -rf node_modules",
-    "start": "webpack-dev-server --hot --inline",
+    "test:watch": "jest --env=jsdom --watchAll --coverage",
+    "start": "webpack-dev-server --hot --inline --port 9000",
     "publish": "git push && npm publish"
   },
   "dependencies": {
-    "diory-react-components": "^1.1.1",
+    "deepmerge": "^2.0.1",
+    "diory-react-components": "^1.2.1",
     "google-map-react": "^0.24.0",
     "prop-types": "15.5.8"
   },
   "peerDependencies": {
-    "react": "^15.5.4"
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
     "babel-cli": "6.16.0",
