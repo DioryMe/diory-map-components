@@ -82,6 +82,10 @@
   },
   "description": "Create map components from Diograph data",
   "homepage": "https://github.com/DioryMe/diory-map-components",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/DioryMe/diory-map-components.git"
+  },
   "keywords": [
     "diory",
     "map",
