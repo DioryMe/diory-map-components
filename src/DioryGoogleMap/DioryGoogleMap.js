@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import deepmerge from 'deepmerge'
 import GoogleMap from 'google-map-react'
 import { DioryMapPin } from '../.'
-import { enhanceWithDioryMapWrapper } from './enhanceWithDioryMapWrapper'
+import { enhanceWithDioryMapWrapper } from '../DioryMapWrapper/enhanceWithDioryMapWrapper'
 
 const DioryGoogleMap = ({
   data: {
