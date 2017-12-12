@@ -20,15 +20,13 @@ class DioryExampleApp extends Component {
         { example !== 'diory-map-components' &&
           <Diory
             text="< Back"
-            styles={{
-              diory: {
-                backgroundColor: 'green',
-                cursor: 'pointer',
-                borderBottom: '2px solid white',
-                width: '100px',
-                float: 'left',
-                zIndex: '1'
-              },
+            style={{
+              backgroundColor: 'green',
+              cursor: 'pointer',
+              borderBottom: '2px solid white',
+              width: '100px',
+              float: 'left',
+              zIndex: '1',
               text: {
                 fontWeight: 'bold',
                 fontFamily: 'arial',
@@ -40,11 +38,9 @@ class DioryExampleApp extends Component {
         }
         <Diory
           text={ example + ' example' }
-          styles={{
-            diory: {
-              backgroundColor: 'green',
-              borderBottom: '2px solid white'
-            },
+          style={{
+            backgroundColor: 'green',
+            borderBottom: '2px solid white',
             text: {
               fontWeight: 'bold',
               fontFamily: 'arial',
@@ -56,12 +52,10 @@ class DioryExampleApp extends Component {
           example === 'diory-map-components' && <div>
             <Diory
               text="DioryGoogleMapExample"
-              styles={{
-                diory: {
-                  backgroundColor: 'grey',
-                  cursor: 'pointer',
-                  borderBottom: '2px solid white'
-                },
+              style={{
+                backgroundColor: 'grey',
+                cursor: 'pointer',
+                borderBottom: '2px solid white',
                 text: {
                   fontFamily: 'arial',
                   color: 'white'
@@ -71,12 +65,10 @@ class DioryExampleApp extends Component {
             />
             <Diory
               text="DioryMapPickerExample"
-              styles={{
-                diory: {
-                  backgroundColor: 'grey',
-                  cursor: 'pointer',
-                  borderBottom: '2px solid white'
-                },
+              style={{
+                backgroundColor: 'grey',
+                cursor: 'pointer',
+                borderBottom: '2px solid white',
                 text: {
                   fontFamily: 'arial',
                   color: 'white'

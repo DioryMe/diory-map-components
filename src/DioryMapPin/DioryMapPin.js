@@ -8,7 +8,7 @@ const DioryMapPin = ({ state = {}, children, ...diory }) => (
     <div style={ defaultStyles.pin } />
     <div style={ defaultStyles.container }>
       <div style={ state.hover ? defaultStyles.rectangle : defaultStyles.circle }>
-        { children || <Diory { ...deepmerge({ styles: { diory: defaultStyles.diory } }, diory) } /> }
+        { children || <Diory { ...deepmerge({ style: defaultStyles.diory }, diory) } /> }
       </div>
     </div>
   </div>
@@ -70,7 +70,6 @@ const defaultStyles = {
 
 DioryMapPin.propTypes = {
   state: PropTypes.object,
-  styles: PropTypes.object,
   children: PropTypes.node
 }
 

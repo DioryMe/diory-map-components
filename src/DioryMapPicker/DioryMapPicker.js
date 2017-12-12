@@ -46,12 +46,10 @@ const setGeo = newGeo => ({ geo }) => ({ geo: { ...geo, ...newGeo } })
 
 const pinDiory = {
   text: '+',
-  styles: {
-    diory: {
-      backgroundColor: 'green',
-      height: '100%',
-      width: '100%'
-    },
+  style: {
+    backgroundColor: 'green',
+    height: '100%',
+    width: '100%',
     text: {
       color: 'white',
       fontSize: '40px',

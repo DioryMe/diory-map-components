@@ -3,7 +3,7 @@ export default {
     "lemmenjoki": {
       "text": "Lemmenjoki",
       "image": "http://www.luontoon.fi/documents/10550/13595772/Leammi_joenkielinen_MH_kuvakaruselli.jpg",
-      "styles": {
+      "style": {
         "text": {
           "color": "white"
         }
@@ -19,7 +19,7 @@ export default {
         "cottage": {
           "text": "Cottage",
           "image": "http://r-ec.bstatic.com/images/hotel/max500/119/11967104.jpg",
-          "styles": {
+          "style": {
             "text": {
               "color": "white"
             }
@@ -35,7 +35,7 @@ export default {
         "ravadaskongas": {
           "text": "Ravadasköngäs",
           "image": "http://www.korpikartano.fi/wp-content/uploads/2015/12/lemmenjoki2.jpg",
-          "styles": {
+          "style": {
             "text": {
               "color": "white"
             }
@@ -53,7 +53,7 @@ export default {
     "tampere": {
       "text": "Tampere",
       "image": "http://embec2017.org/wp-content/uploads/2016/10/N1.jpg",
-      "styles": {
+      "style": {
         "text": {
           "color": "white"
         }
@@ -71,7 +71,7 @@ export default {
     "googleMapTool": {
       "text": "GoogleMapTool",
       "data": {
-        "apiKey": "enter your personal Google API key",
+        "apiKey": "AIzaSyC1UqNLzORySSx0BntC24AyfZkra9M65FM",
         "geo": {
           "latitude": 61.4978,
           "longitude": 23.7610,

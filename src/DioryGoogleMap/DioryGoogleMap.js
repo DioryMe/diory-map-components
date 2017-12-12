@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import deepmerge from 'deepmerge'
 import GoogleMap from 'google-map-react'
 import { DioryMapPin } from '../.'
 import { enhanceWithDioryMapWrapper } from './enhanceWithDioryMapWrapper'
@@ -9,7 +10,7 @@ const DioryGoogleMap = ({
     apiKey,
     geo: { latitude, longitude, zoom }
   },
-  styles = {},
+  style = {},
   diorys,
   actions: {
     onDioryClick,
@@ -20,7 +21,7 @@ const DioryGoogleMap = ({
   },
   children
 }) => (!apiKey ? null :
-  <div style={ styles.diory || defaultStyles.diory }>
+  <div style={ deepmerge(defaultStyles.diory, style) }>
     <GoogleMap
       bootstrapURLKeys={{ key: apiKey }}
       center={{ lat: latitude, lng: longitude }}
@@ -78,7 +79,7 @@ DioryGoogleMap.propTypes = {
     apiKey: PropTypes.string,
     geo: PropTypes.object
   }),
-  styles: PropTypes.object,
+  style: PropTypes.object,
   diorys: PropTypes.object,
   actions: PropTypes.object,
   children: PropTypes.node
