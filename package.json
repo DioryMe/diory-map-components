@@ -1,6 +1,6 @@
 {
   "name": "diory-map-components",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rm -rf node_modules",
@@ -84,6 +84,7 @@
   "homepage": "https://github.com/DioryMe/diory-map-components",
   "keywords": [
     "diory",
+    "map",
     "react",
     "javascript",
     "diograph"
