@@ -13,7 +13,7 @@ $ npm i diory-map-components --save
 ## Import
 
 ```js
-import DioryGoogleMap, { DioryMapPicker, DioryMapPin, DioryMapWrapper } from 'diory-map-components'
+import DioryGoogleMap, { DioryMapPicker, DioryMapPin, DioryMapWrapper, MapDiory } from 'diory-map-components'
 
 ```
 
@@ -79,6 +79,19 @@ const diorys = {
   <DioryMapPicker { ...dioryGoogleMapTool } onClick={ ({ diory }) => console.log(diory) } />
 ```
 
+#### MapDiory
+```js
+const geo = {
+  "latitude": 68.6757239,
+  "longitude": 25.9126356,
+  "zoom": 10
+}
+```
+
+```jsx
+  <MapDiory data={{ apiKey: 'your Google API key', geo }} />
+```
+
 ## Developing library in watch mode
 
 Build, run lint and run unit tests in watch mode:
@@ -102,7 +115,9 @@ Go to http://localhost:9000
 
 ## Changes
 
- - 1.0.0 (12.12.2017)
+ - 1.1.0 (13.12.2017)
+     - Created <MapDiory/> for showing geo on a map in a diory
+  - 1.0.0 (12.12.2017)
     - Created <DioryGoogleMap/> for showing diorys on a map
     - Created <DioryMapPicker/> for getting geo data from clicked location
     - Created <DioryMapPin/> for pointing a location in a map
