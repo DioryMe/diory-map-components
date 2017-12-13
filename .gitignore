@@ -16,6 +16,7 @@ lib
 
 # Example
 bundle.js
+apiKeys.js
 
 # Tests
 tests

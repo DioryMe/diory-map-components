@@ -1,3 +1,5 @@
+import { googleApiKey } from './apiKeys'
+
 export default {
   "diorys": {
     "lemmenjoki": {
@@ -71,7 +73,7 @@ export default {
     "googleMapTool": {
       "text": "GoogleMapTool",
       "data": {
-        "apiKey": "AIzaSyC1UqNLzORySSx0BntC24AyfZkra9M65FM",
+        "apiKey": googleApiKey,
         "geo": {
           "latitude": 61.4978,
           "longitude": 23.7610,
