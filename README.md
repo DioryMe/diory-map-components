@@ -92,6 +92,12 @@ const geo = {
   <MapDiory data={{ apiKey: 'your Google API key', geo }} />
 ```
 
+#### Utils
+```js
+  const { data: { geo } } = addMiddleGeo({ diorys: ... })
+  const { data: { geo } } = addGeoFromImage({ image: 'some-image.jpg' })
+```
+
 ## Developing library in watch mode
 
 Build, run lint and run unit tests in watch mode:
