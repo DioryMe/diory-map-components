@@ -9,6 +9,7 @@ const addGeoFromImage = diory => {
   image.src = diory.image
 
   return new Promise(resolve => {
+    /* eslint-disable no-new */
     new Exif(image, {
       done: exifTags => {
         if (exifTags.GPSLatitude && exifTags.GPSLongitude) {

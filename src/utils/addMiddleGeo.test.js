@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import React from 'react'
 import addMiddleGeo from './addMiddleGeo'
 
 describe('addMiddleGeo', () => {
@@ -9,7 +8,7 @@ describe('addMiddleGeo', () => {
         data: {
           geo: {
             latitude: 1,
-            longitude: 1,
+            longitude: 1
           }
         }
       },
@@ -17,14 +16,14 @@ describe('addMiddleGeo', () => {
         data: {
           geo: {
             latitude: 2,
-            longitude: 2,
+            longitude: 2
           }
         }
-      },
+      }
     }}).data.geo).toEqual({
       latitude: 1.5,
       longitude: 1.5,
-      zoom: 10,
+      zoom: 10
     })
   })
 
@@ -34,7 +33,7 @@ describe('addMiddleGeo', () => {
         data: {
           geo: {
             latitude: 1,
-            longitude: 1,
+            longitude: 1
           }
         }
       },
@@ -42,7 +41,7 @@ describe('addMiddleGeo', () => {
         data: {
           geo: {
             latitude: 2,
-            longitude: 2,
+            longitude: 2
           }
         }
       },
@@ -50,11 +49,11 @@ describe('addMiddleGeo', () => {
         data: {
           geo: {}
         }
-      },
+      }
     }}).data.geo).toEqual({
       latitude: 1.5,
       longitude: 1.5,
-      zoom: 10,
+      zoom: 10
     })
   })
 
@@ -64,14 +63,14 @@ describe('addMiddleGeo', () => {
         data: {
           geo: {
             latitude: 1,
-            longitude: 1,
+            longitude: 1
           }
         }
-      },
+      }
     }}).data.geo).toEqual({
       latitude: 1,
       longitude: 1,
-      zoom: 10,
+      zoom: 10
     })
   })
 
@@ -82,8 +81,8 @@ describe('addMiddleGeo', () => {
           data: {
             geo: {}
           }
-        },
+        }
       }}).data).toBe(undefined)
-    });
-  });
+    })
+  })
 })

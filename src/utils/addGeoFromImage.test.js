@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import React from 'react'
 import addGeoFromImage from './addGeoFromImage'
 
 describe('addGeoFromImage', () => {
@@ -10,9 +9,9 @@ describe('addGeoFromImage', () => {
       expect(diory.data.geo).toEqual({
         latitude: -33.85608611111111,
         longitude: 151.219925,
-        zoom: 10,
+        zoom: 10
       })
-      done();
+      done()
     })
   })
 })

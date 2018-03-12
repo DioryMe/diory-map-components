@@ -1,12 +1,12 @@
 const addMiddleGeo = diory => {
   const diorysMiddlePoint = getMiddlePointGeo(diory)
   return isEmptyObject(diorysMiddlePoint) ? diory : ({
-      ...diory,
-      data: {
-        ...diory.data,
-        geo: diorysMiddlePoint
-      }
-    })
+    ...diory,
+    data: {
+      ...diory.data,
+      geo: diorysMiddlePoint
+    }
+  })
 }
 
 const getMiddlePointGeo = ({ diorys = {} }) => Object.entries(diorys)
