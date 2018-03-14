@@ -1,6 +1,6 @@
 {
   "name": "diory-map-components",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rm -rf node_modules",
@@ -12,7 +12,7 @@
     "test": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watchAll --coverage",
     "start": "webpack-dev-server --hot --inline --port 9000",
-    "publish": "git push && npm publish"
+    "publish": "npm run build && git push && npm publish"
   },
   "dependencies": {
     "@fengyuanchen/exif": "^0.1.1",

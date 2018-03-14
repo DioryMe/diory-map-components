@@ -41,7 +41,7 @@ const DioryGoogleMap = ({
   </div>
 )
 
-const formatToNumber = stringOrNumber => parseFloat(stringOrNumber);
+const formatToNumber = stringOrNumber => parseFloat(stringOrNumber)
 
 const getCoordinates = action => ({ lng: longitude, lat: latitude }) => {
   action && action({ diory: { data: { geo: { longitude, latitude } } } })
