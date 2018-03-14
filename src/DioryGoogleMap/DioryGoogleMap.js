@@ -24,8 +24,8 @@ const DioryGoogleMap = ({
   <div style={ deepmerge(defaultStyles.diory, style) }>
     <GoogleMap
       bootstrapURLKeys={{ key: apiKey }}
-      center={{ lat: latitude, lng: longitude }}
-      zoom={ zoom }
+      center={{ lat: formatToNumber(latitude), lng: formatToNumber(longitude) }}
+      zoom={ formatToNumber(zoom) }
       onClick={ getCoordinates(onMapClick) }
       onChildClick={ getKeyAndDiory(onDioryClick) }
       onChildMouseEnter={ getKeyAndDiory(onDioryHoverBegin) }
@@ -40,6 +40,8 @@ const DioryGoogleMap = ({
     </GoogleMap>
   </div>
 )
+
+const formatToNumber = stringOrNumber => parseFloat(stringOrNumber);
 
 const getCoordinates = action => ({ lng: longitude, lat: latitude }) => {
   action && action({ diory: { data: { geo: { longitude, latitude } } } })

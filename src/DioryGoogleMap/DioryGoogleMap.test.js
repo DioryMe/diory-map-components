@@ -27,17 +27,30 @@ describe('<DioryGoogleMap/>', () => {
         expect(getComponent().prop('bootstrapURLKeys')).toEqual({ key: 'some-apiKey' })
       })
 
-      it('renders GoogleMap with a lng and lat from diory data geo', () => {
+      it('renders GoogleMap center with diory data geo in number format', () => {
         const longitude = 1234
         const latitude = 4321
         diory.data = { ...diory.data, geo: { longitude, latitude } }
         expect(getComponent().prop('center')).toEqual({ lng: longitude, lat: latitude })
       })
 
-      it('renders GoogleMap with a zoom from diory data geo', () => {
+      it('renders GoogleMap center with diory data geo in string format', () => {
+        const longitude = '1234'
+        const latitude = '4321'
+        diory.data = { ...diory.data, geo: { longitude, latitude } }
+        expect(getComponent().prop('center')).toEqual({ lng: 1234, lat: 4321 })
+      })
+
+      it('renders GoogleMap zoom with diory data geo in number format', () => {
         const zoom = 9999
         diory.data = { ...diory.data, geo: { zoom } }
         expect(getComponent().prop('zoom')).toEqual(zoom)
+      })
+
+      it('renders GoogleMap zoom with diory data geo in string format', () => {
+        const zoom = '9999'
+        diory.data = { ...diory.data, geo: { zoom } }
+        expect(getComponent().prop('zoom')).toEqual(9999)
       })
 
       describe('map actions', () => {
