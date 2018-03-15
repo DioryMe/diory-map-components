@@ -8,7 +8,7 @@ import { enhanceWithDioryMapWrapper } from '../DioryMapWrapper/enhanceWithDioryM
 const DioryGoogleMap = ({
   data: {
     apiKey,
-    geo: { latitude, longitude, zoom }
+    geo: { latitude = 61.6316413, longitude = -12.0290996, zoom = 3 }
   },
   style = {},
   diorys,
@@ -62,13 +62,6 @@ const defaultStyles = {
 }
 
 DioryGoogleMap.defaultProps = {
-  data: {
-    geo: {
-      latitude: 61.6316413,
-      longitude: -12.0290996,
-      zoom: 3
-    }
-  },
   actions: {
     onDioryClick: () => {},
     onDioryHoverBegin: () => {},
