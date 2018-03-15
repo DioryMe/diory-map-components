@@ -8,5 +8,9 @@ export const enhanceWithDioryMapWrapper = Diory => hasGeoData(Diory) && cloneEle
   Diory
 })
 
-const hasGeoData = Component => Component && Component.props && Component.props.data && Component.props.data.geo
+const hasGeoData = Component => {
+  const geo = (((Component || {}).props || {}).data || {}).geo || {}
+  return geo.latitude && geo.longitude
+}
+
 const formatToNumber = stringOrNumber => parseFloat(stringOrNumber)
