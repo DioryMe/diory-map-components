@@ -8,7 +8,7 @@ import { enhanceWithDioryMapWrapper } from '../DioryMapWrapper/enhanceWithDioryM
 const DioryGoogleMap = ({
   data: {
     apiKey,
-    geo: { latitude = 61.6316413, longitude = -12.0290996, zoom = 3 }
+    geo: { latitude, longitude, zoom }
   },
   style = {},
   diorys,
@@ -24,8 +24,8 @@ const DioryGoogleMap = ({
   <div style={ deepmerge(defaultStyles.diory, style) }>
     <GoogleMap
       bootstrapURLKeys={{ key: apiKey }}
-      center={{ lat: formatToNumber(latitude), lng: formatToNumber(longitude) }}
-      zoom={ formatToNumber(zoom) }
+      center={{ lat: parseLat(latitude), lng: parseLng(longitude) }}
+      zoom={ parseZoom(zoom) }
       onClick={ getCoordinates(onMapClick) }
       onChildClick={ getKeyAndDiory(onDioryClick) }
       onChildMouseEnter={ getKeyAndDiory(onDioryHoverBegin) }
@@ -41,7 +41,9 @@ const DioryGoogleMap = ({
   </div>
 )
 
-const formatToNumber = stringOrNumber => parseFloat(stringOrNumber)
+const parseLat = latitude => parseFloat(latitude) || 61.6316413
+const parseLng = longitude => parseFloat(longitude) || -12.0290996
+const parseZoom = zoom => parseFloat(zoom) || 3
 
 const getCoordinates = action => ({ lng: longitude, lat: latitude }) => {
   action && action({ diory: { data: { geo: { longitude, latitude } } } })
