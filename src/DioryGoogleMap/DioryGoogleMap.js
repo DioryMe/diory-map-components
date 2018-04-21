@@ -8,7 +8,7 @@ import { enhanceWithDioryMapWrapper } from '../DioryMapWrapper/enhanceWithDioryM
 const DioryGoogleMap = ({
   data: {
     apiKey,
-    geo,
+    geo
   },
   style = {},
   diorys,

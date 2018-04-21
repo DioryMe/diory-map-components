@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import deepmerge from 'deepmerge'
 import { DioryGoogleMap, DioryMapPin } from '../.'
@@ -14,7 +14,7 @@ const DioryMapPicker = ({ onChange, onClick, ...diory }) => {
         onChange: ({ diory }) => onChange({ diory: deepmerge(pinDiory, diory) })
       }}
     >
-      <DioryMapPin { ...pinDiory }/>
+      <DioryMapPin { ...pinDiory } />
     </DioryGoogleMap>
   )
 }

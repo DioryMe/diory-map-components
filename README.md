@@ -13,7 +13,7 @@ $ npm i diory-map-components --save
 ## Import
 
 ```js
-import DioryGoogleMap, { DioryMapPicker, DioryMapPin, DioryMapWrapper, MapDiory } from 'diory-map-components'
+import { DioryGoogleMap, DioryMapPicker, DioryMapPin, DioryMapWrapper, MapDiory } from 'diory-map-components'
 
 ```
 
@@ -21,8 +21,7 @@ import DioryGoogleMap, { DioryMapPicker, DioryMapPin, DioryMapWrapper, MapDiory 
 
 #### Diograph data
 ```js
-const dioryGoogleMapTool = {
-      "text": "GoogleMapTool",
+const diory = {
       "data": {
         "apiKey": "your Google API key",
         "geo": {
@@ -71,25 +70,26 @@ const diorys = {
 
 #### DioryGoogleMap
 ```jsx
-  <DioryGoogleMap { ...dioryGoogleMapTool } diorys={ diorys } />
+  <DioryGoogleMap { ...diory } diorys={ diorys } />
+```
+
+#### DioryMapPin
+```jsx
+  <DioryMapPin { ...diory }/>
 ```
 
 #### DioryMapPicker
 ```jsx
-  <DioryMapPicker { ...dioryGoogleMapTool } onClick={ ({ diory }) => console.log(diory) } />
+  <DioryMapPicker { ...diory }
+    diorys={{ pin: {...} }}
+    onChange{ ({ diory }) => console.log(diory) }
+    onClick={ ({ diory }) => console.log(diory) } 
+  />
 ```
 
 #### MapDiory
-```js
-const geo = {
-  "latitude": 68.6757239,
-  "longitude": 25.9126356,
-  "zoom": 10
-}
-```
-
 ```jsx
-  <MapDiory data={{ apiKey: 'your Google API key', geo }} />
+  <MapDiory { ...diory }/>
 ```
 
 #### Utils
@@ -120,9 +120,13 @@ $ npm start
 Go to http://localhost:9000
 
 ## Changes
-
+ - 1.3.0 (21.4.2018)
+    - Change DioryMapPicker to stateless component
+ - 1.2.0 (13.3.2018)
+    - Created utils for getting geo data from image
+    - Created util for getting middle geo point 
  - 1.1.0 (13.12.2017)
-     - Created <MapDiory/> for showing geo on a map in a diory
+    - Created <MapDiory/> for showing geo on a map in a diory
   - 1.0.0 (12.12.2017)
     - Created <DioryGoogleMap/> for showing diorys on a map
     - Created <DioryMapPicker/> for getting geo data from clicked location
