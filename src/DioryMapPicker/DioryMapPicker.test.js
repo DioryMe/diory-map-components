@@ -38,27 +38,9 @@ describe('<DioryMapPicker/>', () => {
       })
     })
 
-    it('sets coordinates to DioryMapPin', () => {
-      expect(component.find('DioryMapPin').props().data.geo).toEqual({
-        longitude: 'some-longitude', latitude: 'some-latitude'
-      })
-    })
-
     it('calls onChange with diory data geo', () => {
       expect(diory.onChange).toBeCalledWith({
         diory: { data: { geo: { longitude: 'some-longitude', latitude: 'some-latitude' } } }
-      })
-    })
-
-    describe('when diory on map is clicked', () => {
-      beforeEach(() => {
-        component.props().actions.onDioryClick()
-      })
-
-      it('calls onClick with diory data geo', () => {
-        expect(diory.onClick).toBeCalledWith({
-          diory: { data: { geo: { longitude: 'some-longitude', latitude: 'some-latitude' } } }
-        })
       })
     })
   })
@@ -66,16 +48,9 @@ describe('<DioryMapPicker/>', () => {
   describe('when map is changed by zooming or resize', () => {
     let component
     beforeEach(() => {
-      diory.onClick = jest.fn()
       diory.onChange = jest.fn()
       component = getComponent()
       component.props().actions.onChange({ diory: { data: { geo: { zoom: 'some-zoom' } } } })
-    })
-
-    it('sets zoom to DioryMapPin', () => {
-      expect(component.find('DioryMapPin').props().data.geo).toEqual({
-        zoom: 'some-zoom'
-      })
     })
 
     it('calls onChange with diory data geo', () => {
@@ -83,16 +58,20 @@ describe('<DioryMapPicker/>', () => {
         diory: { data: { geo: { zoom: 'some-zoom' } } }
       })
     })
+  })
 
-    describe('when diory on map is clicked', () => {
-      beforeEach(() => {
-        component.props().actions.onDioryClick()
-      })
+  describe('when diory on map is clicked', () => {
+    let component
+    beforeEach(() => {
+      diory.onClick = jest.fn()
+      diory.data.geo = { some: 'geo' }
+      component = getComponent()
+      component.props().actions.onDioryClick()
+    })
 
-      it('calls onClick with diory data zoom', () => {
-        expect(diory.onClick).toBeCalledWith({
-          diory: { data: { geo: { zoom: 'some-zoom' } } }
-        })
+    it('calls onClick with diory data geo', () => {
+      expect(diory.onClick).toBeCalledWith({
+        diory: { data: { geo: { some: 'geo' } } }
       })
     })
   })
