@@ -7,7 +7,15 @@ class DioryMapPickerExample extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      room: {}
+      room: {},
+      pin: {
+        style: {
+          backgroundColor: 'green'
+        },
+        state: {
+          hover: false
+        }
+      },
     }
   }
 
@@ -15,25 +23,24 @@ class DioryMapPickerExample extends Component {
     this.setState(() => ({ room }));
   }
 
+  setPin = ({ diory }) => {
+    this.setState({ pin: diory });
+  };
+
   render() {
-    const { room: { tools: { googleMapTool } } } = this.state
-    const { diory = {} } = this.props
-    const toolDiory = mergeData(googleMapTool, this.props.diory)
-    const geo = deepmerge(getGeoObject(googleMapTool), getGeoObject(diory))
+    const { pin, room: { tools: { googleMapTool } } } = this.state;
+    const diory = deepmerge(googleMapTool, this.props.diory)
 
     return (
       <DioryMapPicker
-        { ...toolDiory }
-        geo={ geo }
-        onClick={ ({ diory }) => this.props.onClick({ diory }) }
-        onChange={ ({ diory }) => console.log(diory) }
+        { ...diory }
+        diorys={{ pin }}
+        onClick={ this.props.onClick }
+        onChange={ this.setPin }
       />
     )
   }
 }
-
-const mergeData = (diory1 = {}, diory2 = {}) => ({ ...diory1, data: { ...diory1.data, ...diory2.data } })
-const getGeoObject = diory => diory && diory.data && diory.data.geo || {}
 
 export default DioryMapPickerExample
 
